@@ -106,9 +106,6 @@ def main(
             top_k=top_k,
             num_beams=num_beams,
         )
-        # print(generation_config)
-    
-#     return instruction + "\n" + input
 
         generate_params = {
             "input_ids": input_ids,
@@ -117,10 +114,8 @@ def main(
             "output_scores": True,
             "max_new_tokens": max_new_tokens,
         }
-        # print("params: ") 
-        # print(generate_params) # pass
 
-#     # Without streaming
+        # Without streaming
         with torch.no_grad():
             generation_output = model.generate(
                 input_ids=input_ids,
@@ -143,7 +138,7 @@ def main(
                 gr.inputs.Slider(minimum=1, maximum=2000, default=128, step=1,label="Max tokens")], 
         outputs="text",
         title="SophAI demo v0.0.1",
-        description="本demo在LLaMA-7b的基础上，进行了LoRA微调并配合int8量化，实现方法参考 [Standford Alpaca](https://github.com/tatsu-lab/stanford_alpaca)。训练和推理均使用4090，训练花费约5小时。",  # noqa: E501
+        description="本demo在LLaMA-7b的基础上，进行了LoRA微调并配合int8量化，实现方法参考 [Standford Alpaca](https://github.com/tatsu-lab/stanford_alpaca)。训练和推理均使用4090，训练花费约几小时。",  # noqa: E501
     ).launch(server_name="0.0.0.0", share=share_gradio)
     # Old testing code follows.
 
